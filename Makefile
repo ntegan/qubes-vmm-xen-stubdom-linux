@@ -14,8 +14,7 @@ FETCH_CMD := wget --no-use-server-timestamps -q -O
 URLS := \
     https://download.qemu.org/qemu-$(QEMU_VERSION).tar.xz.sig \
     https://kernel.org/pub/linux/kernel/v$(firstword $(subst ., ,$(LINUX_VERSION))).x/linux-$(LINUX_VERSION).tar.sign \
-    https://busybox.net/downloads/busybox-$(BUSYBOX_VERSION).tar.bz2.sig \
-    https://freedesktop.org/software/pulseaudio/releases/pulseaudio-$(PULSEAUDIO_VERSION).tar.xz
+    https://busybox.net/downloads/busybox-$(BUSYBOX_VERSION).tar.bz2.sig
 
 ALL_URLS := $(patsubst %.sign,%.xz,$(patsubst %.sig,%,$(URLS))) $(filter %.sig, $(URLS)) $(filter %.sign, $(URLS))
 ALL_FILES_TMP := $(notdir $(ALL_URLS))

@@ -55,15 +55,6 @@ do
     ln -s busybox "$rootfs_dir/bin/$i"
 done
 
-if [ -n "$LD_LIBRARY_PATH" ]; then
-    export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PWD/build/padist/lib:$PWD/build/padist/lib/pulseaudio"
-else
-    export LD_LIBRARY_PATH="$PWD/build/padist/lib:$PWD/build/padist/lib/pulseaudio"
-fi
-inst build/padist/usr/local/bin/pulseaudio /bin/pulseaudio
-for mod in build/padist/lib/module-*.so; do
-    inst "$mod" /lib/$(basename "$mod")
-done
 
 make DESTDIR="$PWD/build/qemu/install" -C build/qemu install
 inst build/qemu/install/bin/qemu-system-i386 /bin/qemu
